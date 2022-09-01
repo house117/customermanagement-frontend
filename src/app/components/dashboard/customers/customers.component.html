@@ -1,0 +1,68 @@
+<div class="container">
+    <mat-toolbar color="seoondary">
+        <span>Customers</span>
+        <div class="spacer"></div>
+        <button mat-raised-button color="primary" [routerLink]="['create-customer']">ADD CUSTOMER</button>
+    </mat-toolbar>
+
+    <div *ngIf="dataSource.data.length > 0">
+        <mat-form-field appearance="standard" matTooltip="Filter by any of the fields to quickly find any customer.">
+            <mat-label>Filter</mat-label>
+            <input autocomplete="off" matInput (keyup)="applyFilter($event)" placeholder="Ex. write an email..." #input>
+        </mat-form-field>
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource" matSort>
+
+                <!--- Note that these columns can be defined in any order.
+                      The actual rendered columns are set as a property on the row definition" -->
+
+                <!-- Position Column -->
+                <ng-container matColumnDef="firstName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
+                    <td mat-cell *matCellDef="let customer"> {{customer.firstName}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="lastName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </th>
+                    <td mat-cell *matCellDef="let customer"> {{customer.lastName}} </td>
+                </ng-container>
+
+                <!-- Weight Column -->
+                <ng-container matColumnDef="email">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+                    <td mat-cell *matCellDef="let customer"> {{customer.email}} </td>
+                </ng-container>
+
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="phone">
+                    <th mat-header-cell *matHeaderCellDef> Phone </th>
+                    <td mat-cell *matCellDef="let customer"> {{customer.phone}} </td>
+                </ng-container>
+
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef style="text-align: right;"> Actions </th>
+                    <td mat-cell *matCellDef="let customer" style="text-align: right;">
+                        <a matTooltip="View/Edit customer." [routerLink]="['/dashboard/customers', customer.id]"
+                            class="pointer">
+                            <mat-icon color="primary">edit</mat-icon>
+                        </a>
+                        <a matTooltip="View dependents." class="pointer" [routerLink]="[customer.id, 'dependents']">
+                            <mat-icon color="accent">person</mat-icon>
+                        </a>
+                        <a matTooltip="Delete customer." class="pointer"
+                            (click)="openDialogCustomerDeletion('1000ms', '500ms', customer.id, customer.firstName, customer.lastName)">
+                            <mat-icon color="warn">delete</mat-icon>
+                        </a>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+                <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+        </div>
+    </div>
+    <h2 *ngIf="dataSource.data.length == 0"> No customers in database </h2>
+</div>

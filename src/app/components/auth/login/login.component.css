@@ -1,0 +1,31 @@
+.body {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    align-items: center;
+    background-color: #ffffff;
+}
+
+.login {
+
+    width: 100%;
+    max-width: 330px;
+    text-align: center;
+    background-color: #cccccd5a;
+    border-radius: 5%;
+    padding-top: 1.7em;
+    padding-bottom: 1.5em;
+    box-shadow: -2px 2px 17px -3px;
+}
+
+.wide {
+    width: 80%;
+}
+
+.btn {
+    height: 50px;
+}
+
+.spinner {
+    margin: 0 auto;
+}

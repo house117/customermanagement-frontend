@@ -1,1 +1,57 @@
 /* You can add global styles to this file, and also import other style files */
+
+/*@import "~@angular/material/prebuilt-themes/indigo-pink.css";*/
+
+html, body { height: 100%; }
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.img-create {
+    width: 250px;
+    height: fit-content;
+    border-radius: 50%;
+}
+  
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/*Snackbar styles*/
+.error-snackbar {
+    background-color: rgb(223, 33, 33);
+    color: white;
+}
+
+.container {
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 5px;
+}
+
+.btn-edit {
+    color: #1f516f;
+}
+
+.btn-delete {
+    color: #e15639;
+}
+
+.btn-search {
+    color: #1878b0;
+}
+
+.btn-icon-small{
+    width: 10px;
+    height: 10px;
+}
+.mat-icon-small {
+    font-size: small;
+    width: 10px;
+    height: 10px;
+
+}
+
+.message-snackbar {
+    background-color: #FF4081;
+    color: aliceblue;
+}

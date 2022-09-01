@@ -1,0 +1,20 @@
+<div class="body">
+    <mat-spinner *ngIf="loading" diameter="80" class="spinner"></mat-spinner>
+    <div *ngIf="!loading" class="login">
+        <img src="./assets/img/hexaware.png" width="50%">
+        <h1>Customer Management</h1>
+        <form [formGroup]="form" (ngSubmit)="login()">
+            <mat-form-field class="wide" appearance="fill">
+                <mat-label>Username</mat-label>
+                <input type="text" autocomplete="off" matInput formControlName="username">
+            </mat-form-field>
+            <mat-form-field class="wide" appearance="fill">
+                <mat-label>Password</mat-label>
+                <input type="password" autocomplete="off" matInput formControlName="password">
+            </mat-form-field>
+            <br>
+            <button type="submit" class="wide btn" mat-raised-button color="primary"
+                [disabled]="form.invalid">Login</button>
+        </form>
+    </div>
+</div>

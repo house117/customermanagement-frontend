@@ -1,0 +1,69 @@
+<div class="container">
+    <mat-toolbar color="seoondary">
+        <a matTooltip="View/Edit dependent." [routerLink]="['/dashboard/customers/']" class="pointer"
+            style="margin-top: 1%;">
+            <mat-icon color="">arrow_back</mat-icon>
+        </a>
+        <span>
+            Dependents</span>
+        <div class="spacer"></div>
+        <button mat-raised-button color="primary" [routerLink]="['create-dependent']">ADD
+            DEPENDENT</button>
+    </mat-toolbar>
+
+    <div *ngIf="dataSource.data.length > 0">
+        <mat-form-field appearance="standard" matTooltip="Filter by any of the fields to quickly find any dependent.">
+            <mat-label>Filter</mat-label>
+            <input autocomplete="off" matInput (keyup)="applyFilter($event)" placeholder="Ex. write an email..." #input>
+
+        </mat-form-field>
+        <span>Total number of dependents: {{dataSource.data.length}}</span>
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource" matSort>
+
+                <!-- Position Column -->
+                <ng-container matColumnDef="firstName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
+                    <td mat-cell *matCellDef="let dependent"> {{dependent.firstName}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="lastName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </th>
+                    <td mat-cell *matCellDef="let dependent"> {{dependent.lastName}} </td>
+                </ng-container>
+
+                <!-- Weight Column -->
+                <ng-container matColumnDef="email">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+                    <td mat-cell *matCellDef="let dependent"> {{dependent.email}} </td>
+                </ng-container>
+
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="phone">
+                    <th mat-header-cell *matHeaderCellDef> Phone </th>
+                    <td mat-cell *matCellDef="let dependent"> {{dependent.phone}} </td>
+                </ng-container>
+
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef style="text-align: right;"> Actions </th>
+                    <td mat-cell *matCellDef="let dependent" style="text-align: right;">
+                        <a matTooltip="View/Edit dependent." [routerLink]="[dependent.id]" class="pointer">
+                            <mat-icon color="primary">edit</mat-icon>
+                        </a>
+                        <a matTooltip="Delete dependent." class="pointer"
+                            (click)="openDialogDependentDeletion('1000ms', '500ms', dependent.customer_id, dependent.id, dependent.firstName, dependent.lastName)">
+                            <mat-icon color="warn">delete</mat-icon>
+                        </a>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+                <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+        </div>
+    </div>
+    <h2 *ngIf="dataSource.data.length == 0"> No dependents in database </h2>
+</div>

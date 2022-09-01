@@ -1,0 +1,17 @@
+export interface Dependent {
+    id?: number,
+    firstName: string,
+    lastName: string,
+    birthDate: string,
+    gender: string,
+    relativeType: string,
+    email: string,
+    phone: string,
+    streetAddress: string,
+    customer_id?: number,
+    city: string,
+    state: string,
+    postal: string,
+    createdDate?: string,
+    modifiedDate?: string,
+}
